@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fraud Rule Checker Dashboard</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-inner">
+      <span class="header-icon">🛡️</span>
+      <div>
+        <h1>Fraud Rule Checker Dashboard</h1>
+        <p>Drools-powered explainable banking fraud detection</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ── Score Guide ──────────────────────────────────────────────────── -->
+    <div class="guide-bar">
+      <span class="chip safe">✓ 0–30 pts → SAFE</span>
+      <span class="chip review">⚠ 31–60 pts → REVIEW</span>
+      <span class="chip fraud">✗ 61+ pts → FRAUD</span>
+      <span class="chip bonus">★ Bonus: Spending Baseline +20 pts</span>
+    </div>
+
+    <!-- ── Customer Search ───────────────────────────────────────────────── -->
+    <section class="card" id="search-card">
+      <h2 class="card-title">🔍 Customer Search</h2>
+
+      <div class="search-row">
+        <div class="field">
+          <label for="customerSelect">Select Customer</label>
+          <select id="customerSelect">
+            <option value="">-- Select a Customer --</option>
+          </select>
+        </div>
+
+        <div class="field or-divider"><span>OR</span></div>
+
+        <div class="field">
+          <label for="customerIdInput">Search by Customer ID</label>
+          <input type="number" id="customerIdInput" placeholder="e.g. 1" min="1"/>
+        </div>
+
+        <div class="field btn-field">
+          <button class="btn-primary" id="loadBtn" onclick="loadTransactions()">
+            <span id="loadBtnText">📋 Load Transactions</span>
+            <span id="loadSpinner" class="spinner hidden"></span>
+          </button>
+        </div>
+      </div>
+
+      <div id="customer-info-bar" class="customer-info-bar hidden">
+        <span id="ci-name"></span>
+        <span class="ci-sep">|</span>
+        <span id="ci-city"></span>
+        <span class="ci-sep">|</span>
+        <span>Avg Txn: <strong id="ci-avg"></strong></span>
+      </div>
+    </section>
+
+    <!-- ── Transactions Table ────────────────────────────────────────────── -->
+    <section class="card" id="txn-card" style="display:none">
+      <h2 class="card-title">💳 Transactions</h2>
+      <div class="table-wrap">
+        <table class="txn-table">
+          <thead>
+            <tr>
+              <th>Txn ID</th>
+              <th>Amount (Rs.)</th>
+              <th>Payee</th>
+              <th>New Payee?</th>
+              <th>Hour</th>
+              <th>Location</th>
+              <th>Time</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="txn-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── Fraud Result Card ─────────────────────────────────────────────── -->
+    <section class="card" id="result-card" style="display:none">
+      <h2 class="card-title">🔎 Fraud Analysis Result</h2>
+
+      <div id="result-loading" class="result-loading hidden">
+        <span class="spinner-lg"></span> Analysing with Drools...
+      </div>
+
+      <div id="result-body" class="hidden">
+
+        <!-- Top row: status badge + score -->
+        <div class="result-header-row">
+          <div id="status-badge" class="status-badge"></div>
+          <div class="score-block">
+            <span class="score-label">Risk Score</span>
+            <span id="score-value" class="score-number">0</span>
+            <span class="score-denom">pts</span>
+          </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="bar-track">
+          <div id="score-bar" class="bar-fill"></div>
+        </div>
+
+        <!-- Meta -->
+        <div class="result-meta">
+          <div><span class="meta-label">Transaction ID</span><strong id="r-txnid"></strong></div>
+          <div><span class="meta-label">Customer</span><strong id="r-customer"></strong></div>
+        </div>
+
+        <!-- Triggered rules -->
+        <div class="reasons-box" id="reasons-box">
+          <h3>⚡ Why was this transaction flagged?</h3>
+          <ul id="reasons-list"></ul>
+          <p id="no-reasons" class="no-flag hidden">✅ No fraud rules were triggered — transaction appears normal.</p>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-box" id="summary-box">
+          <span class="summary-label">📋 Summary</span>
+          <p id="summary-text"></p>
+        </div>
+
+      </div>
+
+      <div id="result-error" class="result-error hidden">
+        <span>⚠️</span>
+        <p id="result-error-msg"></p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Fraud Rule Checker &nbsp;|&nbsp; Java 17 · Spring Boot 3 · Drools 8 · H2 Database</p>
+    <p>
+      <code>GET /api/customers</code> &nbsp;|&nbsp;
+      <code>GET /api/customers/{id}/transactions</code> &nbsp;|&nbsp;
+      <code>GET /api/fraud/analyze/{txnId}</code>
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

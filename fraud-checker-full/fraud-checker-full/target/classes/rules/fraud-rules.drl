@@ -1,0 +1,64 @@
+package rules
+
+import com.fraudchecker.model.TransactionFact
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RULE 1 — High Amount
+// Fires when transaction amount exceeds Rs. 50,000   → +30 points
+// ─────────────────────────────────────────────────────────────────────────────
+rule "High Amount"
+    when
+        $fact : TransactionFact( amount > 50000 )
+    then
+        $fact.setScore( $fact.getScore() + 30 );
+        $fact.getReasons().add( "Amount exceeds Rs.50,000 threshold (+30)" );
+end
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RULE 2 — New Payee
+// Fires when the transaction is to a first-ever payee   → +20 points
+// ─────────────────────────────────────────────────────────────────────────────
+rule "New Payee"
+    when
+        $fact : TransactionFact( newPayee == true )
+    then
+        $fact.setScore( $fact.getScore() + 20 );
+        $fact.getReasons().add( "Transaction made to a new payee (+20)" );
+end
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RULE 3 — Odd Hour
+// Fires when transaction happens between 1 AM and 4 AM   → +15 points
+// ─────────────────────────────────────────────────────────────────────────────
+rule "Odd Hour Transaction"
+    when
+        $fact : TransactionFact( transactionHour >= 1, transactionHour < 4 )
+    then
+        $fact.setScore( $fact.getScore() + 15 );
+        $fact.getReasons().add( "Transaction occurred during odd hours (+15)" );
+end
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RULE 4 — Unusual Location
+// Fires when location differs from customer's home city   → +25 points
+// ─────────────────────────────────────────────────────────────────────────────
+rule "Unusual Location"
+    when
+        $fact : TransactionFact( locationMismatch == true )
+    then
+        $fact.setScore( $fact.getScore() + 25 );
+        $fact.getReasons().add( "Transaction location differs from customer's home city (+25)" );
+end
+
+// ─────────────────────────────────────────────────────────────────────────────
+// BONUS — Spending Baseline
+// Fires when amount > 3× the customer's average spend   → +20 points
+// ─────────────────────────────────────────────────────────────────────────────
+rule "Spending Baseline"
+    when
+        $fact : TransactionFact( customerAvgAmount > 0,
+                                  amount > ( customerAvgAmount * 3 ) )
+    then
+        $fact.setScore( $fact.getScore() + 20 );
+        $fact.getReasons().add( "Transaction amount exceeds customer's normal spending pattern (+20)" );
+end
