@@ -1,16 +1,12 @@
-# 🛡️ Fraud Rule Checker – Intelligent Banking Fraud Detection System
+# 🛡️ Fraud Rule Checker – Full Stack Banking Fraud Detection System
 
-![Java](https://img.shields.io/badge/Java-17-orange)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.3-green)
-![Drools](https://img.shields.io/badge/Drools-Rule_Engine-red)
-![H2 Database](https://img.shields.io/badge/H2-Database-blue)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+**Java 17 • Spring Boot • Drools Rule Engine • HTML • CSS • JavaScript • Bootstrap • H2 Database • MIT License**
 
 ---
 
 # 📌 Overview
 
-**Fraud Rule Checker** is a rule-based banking fraud detection system designed to identify suspicious financial transactions using the **Drools Business Rule Engine**.
+Fraud Rule Checker is a full-stack banking fraud detection system designed to identify suspicious financial transactions using the **Drools Business Rule Engine**.
 
 The application analyzes customer and transaction data stored in an H2 database and evaluates transactions against predefined fraud rules. Each triggered rule contributes to a fraud score, allowing the system to classify transactions as:
 
@@ -19,6 +15,8 @@ The application analyzes customer and transaction data stored in an H2 database 
 * 🚨 FRAUD
 
 The system provides explainable fraud detection by returning the exact rules that were triggered during analysis.
+
+In addition to powerful backend fraud analysis, the application includes an intuitive web-based dashboard that enables users to monitor transactions, analyze fraud risks, and visualize fraud detection results in real time.
 
 ---
 
@@ -33,6 +31,10 @@ The system provides explainable fraud detection by returning the exact rules tha
 ✅ Transaction Monitoring
 
 ✅ Fraud Explanation & Reason Tracking
+
+✅ Interactive Fraud Analysis Dashboard
+
+✅ Responsive Web Interface
 
 ✅ H2 In-Memory Database Support
 
@@ -68,19 +70,67 @@ The system currently evaluates transactions using the following rules:
 
 ---
 
+# 🖥️ User Interface
+
+The application includes a responsive frontend built using **HTML5, CSS3, JavaScript, and Bootstrap 5**.
+
+The UI communicates with Spring Boot REST APIs and provides a user-friendly experience for fraud monitoring and transaction analysis.
+
+### 🏠 Home Dashboard
+
+The landing page provides:
+
+* Project overview
+* Fraud detection insights
+* Quick navigation options
+* System summary
+
+### 🚨 Fraud Analysis Dashboard
+
+Users can:
+
+* Analyze transactions
+* View fraud scores
+* Check risk classifications
+* Review triggered fraud rules
+* Understand fraud explanations
+
+### 📊 Transaction Monitoring
+
+Provides:
+
+* Transaction history
+* Customer transaction details
+* Fraud indicators
+* Risk status monitoring
+
+### 📱 Responsive Design
+
+Optimized for:
+
+* Desktop Devices
+* Tablets
+* Mobile Devices
+
+using Bootstrap's responsive framework.
+
+---
+
 # 🧰 Tech Stack
 
-| Layer       | Technology         |
-| ----------- | ------------------ |
-| Backend     | Java 17            |
-| Framework   | Spring Boot 3.3    |
-| Rule Engine | Drools 7.74        |
-| Database    | H2 Database        |
-| ORM         | Spring Data JPA    |
-| Build Tool  | Maven              |
-| Validation  | Jakarta Validation |
-| Testing     | JUnit 5            |
-| API Style   | REST               |
+| Layer             | Technology                           |
+| ----------------- | ------------------------------------ |
+| Frontend          | HTML5, CSS3, JavaScript, Bootstrap 5 |
+| Backend           | Java 17                              |
+| Framework         | Spring Boot 3.3                      |
+| Rule Engine       | Drools 7.74                          |
+| Database          | H2 Database                          |
+| ORM               | Spring Data JPA                      |
+| Build Tool        | Maven                                |
+| Validation        | Jakarta Validation                   |
+| API Documentation | Swagger / OpenAPI                    |
+| Testing           | JUnit 5                              |
+| API Style         | REST                                 |
 
 ---
 
@@ -137,6 +187,8 @@ Application URL:
 ```text
 http://localhost:8080
 ```
+
+Open the application in your browser to access the Fraud Detection Dashboard.
 
 ---
 
@@ -226,8 +278,8 @@ fraud-rule-checker/
 │
 ├── src/
 │   ├── main/
-│   │   ├── java/com/fraudchecker/
-│   │   │
+│   │
+│   ├── java/com/fraudchecker/
 │   │   ├── controller/
 │   │   │   ├── CustomerController.java
 │   │   │   ├── TransactionController.java
@@ -259,8 +311,17 @@ fraud-rule-checker/
 │   │   └── FraudCheckerApplication.java
 │   │
 │   └── resources/
+│       ├── static/
+│       │   ├── css/
+│       │   │   └── styles.css
+│       │   ├── js/
+│       │   │   └── app.js
+│       │   ├── index.html
+│       │   └── fraud-analysis.html
+│       │
 │       ├── rules/
 │       │   └── fraud-rules.drl
+│       │
 │       ├── application.properties
 │       └── data.sql
 │
@@ -302,7 +363,35 @@ Transaction is classified as:
 
 ### Step 7
 
-Triggered rules are returned as explanations.
+Triggered rules are returned as explanations and displayed on the dashboard.
+
+---
+
+# 📸 Screenshots
+
+## 🏠 Home Dashboard
+
+Displays project overview and fraud monitoring summary.
+
+```text
+screenshots/home-dashboard.png
+```
+
+## 🚨 Fraud Analysis Dashboard
+
+Displays fraud score, status, and triggered rules.
+
+```text
+screenshots/fraud-analysis-dashboard.png
+```
+
+## 📊 Transaction Monitoring
+
+Displays transaction history and fraud indicators.
+
+```text
+screenshots/transaction-monitoring.png
+```
 
 ---
 
@@ -310,7 +399,7 @@ Triggered rules are returned as explanations.
 
 🤖 Machine Learning Based Fraud Detection
 
-📊 Fraud Analytics Dashboard
+📊 Advanced Fraud Analytics Dashboard
 
 📧 Email Alert Notifications
 
@@ -335,6 +424,8 @@ Triggered rules are returned as explanations.
 * Enables explainable fraud detection
 * Supports scalable banking operations
 * Provides fast rule updates without code changes
+* Improves fraud investigation efficiency
+* Enhances banking security and compliance
 
 ---
 
@@ -352,7 +443,7 @@ This project is licensed under the MIT License.
 * JAKKAMSETTI VENKATA SIRI
 * SADHU VENKATA SAI NIKITH
 * BOOBATHY R
-* MYLA MANIKANTA 
+* MYLA MANIKANTA
 
 ---
 
