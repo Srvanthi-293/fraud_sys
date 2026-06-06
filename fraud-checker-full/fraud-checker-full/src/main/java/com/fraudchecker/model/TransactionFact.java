@@ -21,7 +21,7 @@ public class TransactionFact {
     private int score = 0;
     private List<String> reasons = new ArrayList<>();
 
-    // ── Constructor ──────────────────────────────────────────────────────────
+    // ── Constructor
     public TransactionFact(double amount, boolean newPayee, int transactionHour,
                            boolean locationMismatch, double customerAvgAmount) {
         this.amount = amount;
@@ -31,7 +31,7 @@ public class TransactionFact {
         this.customerAvgAmount = customerAvgAmount;
     }
 
-    // ── Getters & Setters ────────────────────────────────────────────────────
+    // ── Getters & Setters
     public double getAmount() { return amount; }
     public void setAmount(double amount) { this.amount = amount; }
 
