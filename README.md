@@ -24,7 +24,7 @@ In addition to powerful backend fraud analysis, the application includes an intu
 
 ✅ Rule-Based Fraud Detection using Drools
 
-✅ Real-Time Fraud Risk Scoring
+✅ Fraud Risk Scoring System
 
 ✅ Customer Profile Management
 
